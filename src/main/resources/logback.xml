@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{MM:dd HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="MaxFileSize" value="10MB" />
+        <file>c:/app/Application_properties.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{MM:dd HH:mm:ss.SSS} [%t] [%level] [%logger{36}] - %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logging custom package -->
+    <logger name="com.javainterviewpoint" level="info" additivity="false">
+        <appender-ref ref="ConsoleAppender"></appender-ref>
+        <appender-ref ref="FileAppender"></appender-ref>
+    </logger>
+
+    <!-- Logging spring boot package -->
+    <logger name="org.springframework.boot" level="info" additivity="false">
+        <appender-ref ref="ConsoleAppender"></appender-ref>
+        <appender-ref ref="FileAppender"></appender-ref>
+    </logger>
+
+
+    <root level="info">
+        <appender-ref ref="ConsoleAppender"></appender-ref>
+    </root>
+</configuration>
